@@ -1,0 +1,36 @@
+<% if @users.empty? %>
+	<p class="nodata">
+	    <%= l(:label_no_data) %>
+	</p>
+<% else %>
+	<table class="list">
+	    <thead>
+	        <tr>
+	            <th>
+	                <%= link_to l(:label_user_login), {:action => 'index', :order_login => @login['order'], :tab => "members"}, :class => @login['class'] %>
+	            </th>
+	            <th>
+	                <%= link_to l(:label_user_fullname), {:action => 'index', :order_name => @name['order'], :tab => "members"}, :class => @name['class'] %>
+	            </th>
+	            <th>
+	                <%= link_to l(:label_field_hours), {:action => 'index', :order_hours => @hours['order'], :tab => "members"}, :class => @hours['class'] %>
+	            </th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <% @users.each do |user| %>
+	        <tr class="<%= cycle 'odd', 'even' %>">
+	            <td>
+	                <%= user['login'] %>
+	            </td>
+	            <td>
+	                <%= user['fullname'] %>
+	            </td>
+	            <td>
+	                <%= user['hours'] %>
+	            </td>
+	        </tr>
+	        <% end %>
+	    </tbody>
+	</table>
+<% end %>

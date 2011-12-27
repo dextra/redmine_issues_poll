@@ -1,0 +1,6 @@
+<% if authorize_for('polls', 'bet') %>
+<hr>
+<div id="issues_polls_area">
+	<%= render :partial => 'hooks/view_polls_form'%>
+</div>
+<% end %>

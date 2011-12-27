@@ -1,0 +1,18 @@
+<p>
+	<h3><%= t(:label_config_status) %></h3>
+	<% form_tag :action => :set_statuses do %>
+		<% @statuses.each do |status| %>
+		  <p><%= check_box_tag "statuses[]", status.id, @eligible_statuses.include?(status.id), :id => "status#{status.id}" %><label for="status<%= status.id%>"><%= status.name %></label></p>
+		<% end %>
+		<%= submit_tag t(:button_set) %>
+	<% end %>
+</p>
+
+
+<p>
+	<h3><%= t(:label_config_hours) %></h3>
+	<% form_tag :controller => 'polls', :action => 'set_hours' do %>
+		<p><label><%= l(:field_hours) %></label> <%= text_field_tag :hours %></p>
+		<%= submit_tag l(:button_assign) %>
+	<% end %>
+</p>

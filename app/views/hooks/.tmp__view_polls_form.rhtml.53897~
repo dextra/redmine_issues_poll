@@ -1,0 +1,67 @@
+<div class="contextual">
+<% if User.current.can_bet?(@issue.project_id) and @issue.can_receive_bet? %>
+  <%= toggle_link l(:link_bet), 'issues-polls-form' %> | 
+<% end %>
+  <%= toggle_link l(:link_see_members), 'poll-members' %>
+</div>
+
+<table class="attributes" style="width:60%">
+    <tbody>
+        <tr>
+            <th>
+                <%= t(:label_task_hours_bet) %>:
+            </th>
+            <td>
+                <%= @issue.bet_hours %>
+            </td>
+			<th>
+				<%= t(:label_user_hours) %>:
+			</th>
+			<td>
+				<%= User.current.polls_hours_project(@project.id)%>
+			</td>
+        </tr>
+    </tbody>
+</table>
+<% if User.current.can_bet?(@issue.project_id) and @issue.can_receive_bet? %>
+<%= error_messages_for :bet %>
+<% remote_form_for(:bet, @bet,
+:url => {:controller => 'polls', :action => 'bet', :issue_id => @issue.id, :project_id => @issue.project_id},
+:method => :post,
+:complete => "Form.Element.focus('relation_issue_to_id');",
+:html => {:id => 'issues-polls-form', :style => "display: none"}) do |f| %>
+<div class="flash notice" style="display:none"></div>
+<%= error_messages_for 'bet' %>
+<p>
+    <%= l(:label_bet_hours) %>
+    <%= f.select :hours, 1..User.current.polls_hours_project(@project.id), {} %>
+    <%= l(:label_field_hours) %>
+    <%= submit_tag l(:button_bet) %>
+    <%= toggle_link l(:button_cancel), 'issues-polls-form' %>
+</p>
+<% end %>
+<% end %>
+<table class="list" id="poll-members" style="display: none">
+    <tbody>
+        <tr>
+        	<th>
+                <%= t(:label_user_name) %>:
+            </th>
+            <th>
+                <%= t(:label_hours_bet) %>:
+            </th>
+			<th></th>
+        </tr>
+		<% @issue.bets.each do |bet| %>
+			<tr>
+				<td><%= bet.user.name %></td>
+				<td><%= bet.hours %></td>
+				<td>
+					<% if bet.user_id == User.current.id and @issue.can_receive_bet? %>
+						<%= link_to_remote t(:link_cancel_bet), :url => {:controller => 'polls', :action => 'cancel_bet', :issue_id => @issue.id, :project_id => @issue.project_id}, :confirm => t(:confirm_cancel_bet)%>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+    </tbody>
+</table>
