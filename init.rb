@@ -12,9 +12,9 @@ end
 Redmine::Plugin.register :redmine_issues_polls do
   name 'Redmine Issues Polls plugin'
   author 'Dextra Sistemas'
-  description 'This is a plugin for Redmine...................'
+  description 'This is a plugin for Redmine to elect tasks'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin......................'
+  url 'https://github.com/dextra/redmine_issues_polls'
   author_url 'http://www.dextra.com.br'
   
   project_module :issues_polls do
