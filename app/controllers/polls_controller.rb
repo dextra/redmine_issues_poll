@@ -108,7 +108,7 @@ class PollsController < ApplicationController
     user = User.current
     
     render :update do |page|
-      if @issue and user.can_bet?(@issue.project_id) and @issue.can_receive_bet?
+      if @issue and @issue.can_receive_bet?
         bet = Bet.find(:first, :conditions => ["user_id=? AND issue_id=?", user.id, @issue.id])
         
         if bet

@@ -18,7 +18,7 @@ module IssuesPollsUserPatch
   module InstanceMethods
     def polls_hours_project(project_id)
       hours = poll_hours.find(:first, :conditions => ["project_id = ?", project_id])
-      hours ? hours.hours : nil
+      hours.nil? ? nil : hours.hours
     end
     
     def can_bet?(project_id)
