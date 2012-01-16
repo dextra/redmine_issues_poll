@@ -1,0 +1,87 @@
+.issue {
+	position: relative;
+}
+div.issue div.subject h3 {
+	line-height: 40px;
+	padding-right: 280px;
+}
+#issues_polls_area {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 3px #666666 inset;
+	display: block;
+	line-height: 28px;
+	padding: 3px;
+	position: absolute;
+	right: 5px;
+	top: 6px;
+	width: auto;
+}
+#rmipoll ul {
+	margin: 0;
+}
+#rmipoll ul li {
+	float: left;
+	list-style: none;
+	margin: 0 15px 0 5px;
+	position: relative;
+}
+#rmipoll ul li span {
+	background: none repeat scroll 0 0 #EEEEEE;
+	border-radius: 25px;
+	font-weight: bold;
+	padding: 4px 10px;
+}
+#rmipoll ul li p {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #DDDDDD;
+	display: none;
+	padding: 1px 10px;
+	position: absolute;
+	right: 0px;
+	text-align: center;
+	top: 30px;
+	width: 260px;
+	border-radius: 10px;
+}
+#rmipoll ul li:hover p {
+	display: block;
+}
+#rmipoll ul .usertime a, #rmipoll ul .sharetime input, #rmipoll ul .worktime a, #rmipoll ul .viewAll a {
+	display: inline-block;
+	height: 27px;
+	font-size: 0px;
+	text-indent: -99999px;
+	margin-right: 5px;
+	vertical-align: middle;
+	border: 0px;
+	width: 24px;
+}
+#rmipoll ul .worktime a {
+	background: url(../images/worktime.png) 0 0 no-repeat;
+	width: 27px;
+	height: 24px;
+	display: inline-block;
+}
+#rmipoll ul .usertime a {
+	background: url(../images/usertime.png) 0 0 no-repeat;
+	width: 24px;
+}
+#rmipoll ul .sharetime input {
+	background: url(../images/betime.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+#rmipoll ul .viewAll a {
+	background: url(../images/alltime.png) 0 0 no-repeat;
+}
+#rmipoll .errorExplanation {
+	position: absolute;
+	top: 40px;
+}
+#poll-members {
+	background: none repeat scroll 0 0 #FFFFFF;
+	position: absolute;
+	right: 1px;
+	top: 43px;
+	width: 800px;
+}
