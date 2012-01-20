@@ -7,7 +7,8 @@ class Bet < ActiveRecord::Base
   acts_as_event :title => Proc.new {|o| "#{o.issue.tracker.name} ##{o.issue.id} (#{o.issue.status}): #{o.issue.subject}"},
                 :url => Proc.new {|o| {:controller => 'issues', :action => 'show', :id => o.issue.id}},
                 :datetime => :created_at,
-                :description => Proc.new {|o| o.votes > 0 ? I18n.t(:vote_added, :count => o.votes) : I18n.t(:vote_cancelled, :count => o.votes * -1)}
+                :description => Proc.new {|o| o.votes > 0 ? I18n.t(:vote_added, :count => o.votes) : I18n.t(:vote_cancelled, :count => o.votes * -1)},
+                :type => Proc.new {|o| o.votes > 0 ? "vote-added" : "vote-canceled"}
                 
   
   acts_as_activity_provider :timestamp => "#{table_name}.created_at", 

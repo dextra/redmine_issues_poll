@@ -86,3 +86,6 @@
 .view_votes_toggle {
 	cursor: pointer;
 }
+
+dt.vote-added { background-image: url(../images/up.png); }
+dt.vote-canceled { background-image: url(../images/down.png); }

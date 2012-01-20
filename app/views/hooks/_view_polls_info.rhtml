@@ -1,6 +1,3 @@
-<% content_for :header_tags do %>
-	<%= stylesheet_link_tag 'style', :plugin => 'redmine_issues_polls' %>
-<% end %>
 <% if authorize_for('polls', 'bet') %>
 <div id="issues_polls_area">
 	<%= render :partial => 'hooks/view_polls_form'%>
