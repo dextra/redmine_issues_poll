@@ -46,7 +46,7 @@
 			<tr>
 				<th> <%= t(:label_user_name) %> </th>
 				<th> <%= t(:label_votes_bet) %> </th>
-				<th></th>
+				<th align="right"><%= link_to_function "x", "Element.toggle('poll-members');return false;"%></th>
 			</tr>
 			<% @issue.valid_bets.each do |bet| %>
 			<tr>

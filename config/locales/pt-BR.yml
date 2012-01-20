@@ -26,7 +26,7 @@ pt-BR:
   button_cancel: "cancelar"
   invalid_votes: "Votos deve ser inteiro"
   link_bet: "Votar"
-  link_cancel_bet: "Cancelar voto"
+  link_cancel_bet: "cancelar"
   link_see_members: "Ver votos"
   confirm_cancel_bet: "Deseja cancelar o voto?"
   error_not_enough_votes: "Você não tem votos suficientes"
