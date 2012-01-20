@@ -6,7 +6,7 @@ module IssuesPollsUserPatch
     base.send(:include, InstanceMethods)
     
     base.class_eval do
-      has_many :poll_hours
+      has_many :poll_votes
       has_many :bets
     end
     
@@ -16,14 +16,18 @@ module IssuesPollsUserPatch
   end
   
   module InstanceMethods
-    def polls_hours_project(project_id)
-      hours = poll_hours.find(:first, :conditions => ["project_id = ?", project_id])
-      hours.nil? ? nil : hours.hours
+    def polls_votes_project(project_id)
+      votes = poll_votes.find(:first, :conditions => ["project_id = ?", project_id])
+      votes.nil? ? nil : votes.votes
     end
     
     def can_bet?(project_id)
-      available_hours = self.polls_hours_project(project_id)
-      available_hours and available_hours > 0
+      available_votes = self.polls_votes_project(project_id)
+      available_votes and available_votes > 0
+    end
+    
+    def votes_bet_by_issue(issue_id)
+      self.bets.sum(:votes, :conditions => ["issue_id=?", issue_id])
     end
   end
   

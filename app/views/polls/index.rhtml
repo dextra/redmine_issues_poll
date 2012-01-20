@@ -1,3 +1,6 @@
+<% content_for :header_tags do %>
+	<%= stylesheet_link_tag 'style', :plugin => 'redmine_issues_polls' %>
+<% end %>
 <h2><%=l(:issue_polls_dashboard) %></h2>
 
 <%= render_tabs [{:name => 'config', :partial => 'config', :label => :label_config},

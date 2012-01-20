@@ -6,7 +6,7 @@ module IssuesPollsProjectPatch
     base.send(:include, InstanceMethods)
     
     base.class_eval do
-      has_many :poll_hours
+      has_many :poll_votes
     end
     
   end

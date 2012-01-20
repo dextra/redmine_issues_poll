@@ -4,7 +4,7 @@ class PollsController < ApplicationController
   before_filter :find_project, :authorize
   before_filter :get_statuses, :only => [:index, :set_statuses]
   
-  verify :method => [:post], :only => [:set_hours, :set_statuses], :render => { :nothing => true, :status => :method_not_allowed }
+  verify :method => [:post], :only => [:set_votes, :set_statuses, :update_votes], :render => { :nothing => true, :status => :method_not_allowed }
   
   def get_statuses
     @statuses = IssueStatus.find(:all, :order => 'position')
@@ -12,10 +12,10 @@ class PollsController < ApplicationController
   end
   
   def index
-    @users = @project.users.collect {|user| {'login' => user.login, 'fullname' => user.firstname + " " + user.lastname, 'hours' => user.polls_hours_project(@project.id)}}
+    @users = @project.users.collect {|user| {'id' => user.id, 'login' => user.login, 'fullname' => user.name(:firstname_lastname), 'votes' => user.polls_votes_project(@project.id)? user.polls_votes_project(@project.id) : '--'}}
     @login = {'order' => 'asc', 'class' => ''}
     @name = {'order' => 'asc', 'class' => ''}
-    @hours = {'order' => 'asc', 'class' => ''}
+    @votes = {'order' => 'asc', 'class' => ''}
     
     if params[:order_login]
       if params[:order_login] == "asc"
@@ -33,13 +33,13 @@ class PollsController < ApplicationController
         @name = {'order' => 'asc', 'class' => 'sort desc'}
         @users = @users.sort{|a, b| b['fullname'] <=> a['fullname'] }
       end
-    elsif params[:order_hours]
-      if params[:order_hours] == "asc"
-        @hours = {'order' => 'desc', 'class' => 'sort asc'}
-        @users = @users.sort{|a, b| a['hours'] <=> b['hours'] }
+    elsif params[:order_votes]
+      if params[:order_votes] == "asc"
+        @votes = {'order' => 'desc', 'class' => 'sort asc'}
+        @users = @users.sort{|a, b| a['votes'] <=> b['votes'] }
       else
-        @hours = {'order' => 'asc', 'class' => 'sort desc'}
-        @users = @users.sort{|a, b| b['hours'] <=> a['hours'] }
+        @votes = {'order' => 'asc', 'class' => 'sort desc'}
+        @users = @users.sort{|a, b| b['votes'] <=> a['votes'] }
       end
     else
       @login = {'order' => 'desc', 'class' => 'sort asc'}
@@ -56,74 +56,80 @@ class PollsController < ApplicationController
     redirect_to :action => 'index', :tab => 'config'
   end
   
-  def set_hours
-    hours = params[:hours]
-    if /^\d+$/.match(hours)
+  def set_votes
+    votes = params[:votes]
+    if /^\d+$/.match(votes)
       @project.users.each do |user|
-        current_poll_hours = user.poll_hours.find(:first, :conditions => ["project_id = ?", @project.id])
-        if current_poll_hours
-          current_poll_hours.update_attribute(:hours, params[:hours])
+        current_poll_votes = user.poll_votes.find(:first, :conditions => ["project_id = ?", @project.id])
+        if current_poll_votes
+          current_poll_votes.update_attribute(:votes, params[:votes])
         else
-          user.poll_hours << @project.poll_hours.new(:hours => hours)
+          user.poll_votes << @project.poll_votes.new(:votes => votes)
         end
       end
       flash[:notice] = t(:assignment_successful)
     else
-      flash[:error] = l(:invalid_hours)
+      flash[:error] = t(:invalid_votes)
     end
     redirect_to :action => 'index', :tab => 'config'
+  end
+  
+  def update_votes
+    votes = params[:votes]
+    render :update do |page|
+      if /^\d+$/.match(votes)
+        user = User.find(params[:user_id])
+        current_poll_votes = user.poll_votes.find(:first, :conditions => ["project_id = ?", @project.id])
+        if current_poll_votes
+          current_poll_votes.update_attribute(:votes, params[:votes])
+        else
+          user.poll_votes << @project.poll_votes.new(:votes => votes)
+        end
+        page.replace_html "view_votes_#{user.id}", votes
+        page.call('toggleForm', user.id)
+        page.alert(t(:assignment_successful))
+      else
+        page.alert(t(:invalid_votes))
+      end
+    end
   end
   
   def bet
     @issue = Issue.find(:first, :conditions => ["id = ? AND project_id = ?", params[:issue_id], @project.id])
     user = User.current
     render :update do |page|
-      if @issue and user.can_bet?(@issue.project_id) and @issue.can_receive_bet?
-        @bet = Bet.find(:first, :conditions => ["user_id=? AND issue_id=?", user.id, @issue.id])
-        @new_bet = Bet.new(params[:bet])
-        if @bet
-          @bet.hours += @new_bet.hours
-        else
-          @bet = @new_bet
-          @bet.issue_id = @issue.id
-          @bet.user_id = user.id
-        end
-        
-        if @bet.save
-          poll_hour = user.poll_hours.find(:first, :conditions => ["project_id = ?", @issue.project_id])
-          poll_hour.hours -= @new_bet.hours
-          poll_hour.save
-          @issue.bet_hours ||= 0
-          @issue.bet_hours += @new_bet.hours
-          @issue.save
+      @bet = Bet.new(params[:bet])
+      @bet.issue_id = @issue.id
+      @bet.user_id = user.id
+      
+      if @bet.save
+        poll_vote = user.poll_votes.find(:first, :conditions => ["project_id = ?", @issue.project_id])
+        poll_vote.votes -= @bet.votes
+        poll_vote.save
+        @issue.bet_votes ||= 0
+        @issue.bet_votes += @bet.votes
+        @issue.save
+        if @bet.votes > 0
           page.alert(t(:bet_successful_created))
+        else
+          page.alert(t(:bet_successful_canceled))
         end
+        page.replace_html :issues_polls_area, :partial => 'hooks/view_polls_form'
+      else
+        page.alert(@bet.errors.full_messages.join('\n'))
       end
-      page.replace_html :issues_polls_area, :partial => 'hooks/view_polls_form'
     end
   end
   
   def cancel_bet
-    @issue = Issue.find(:first, :conditions => ["id = ? AND project_id = ?", params[:issue_id], @project.id])
-    user = User.current
-    
-    render :update do |page|
-      if @issue and @issue.can_receive_bet?
-        bet = Bet.find(:first, :conditions => ["user_id=? AND issue_id=?", user.id, @issue.id])
-        
-        if bet
-          poll_hour = user.poll_hours.find(:first, :conditions => ["project_id = ?", @issue.project_id])
-          poll_hour.hours += bet.hours
-          poll_hour.save
-          @issue.bet_hours ||= 0
-          @issue.bet_hours -= bet.hours
-          @issue.save
-          bet.destroy
-          page.alert(t(:bet_successful_canceled))
-        end
-      end
-      page.replace_html :issues_polls_area, :partial => 'hooks/view_polls_form'
+    votes = User.current.votes_bet_by_issue(params[:issue_id])
+    if votes <= 0
+      votes = 0
+    else
+      votes *= -1
     end
+    params[:bet] = {:votes => votes}
+    redirect_to :action => :bet, :issue_id => params[:issue_id], :project_id => params[:project_id], :bet => params[:bet]
   end
   
   private

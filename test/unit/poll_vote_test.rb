@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class PollHourTest < ActiveSupport::TestCase
-  fixtures :poll_hours
+class PollVoteTest < ActiveSupport::TestCase
+  fixtures :poll_votes
 
   # Replace this with your real tests.
   def test_truth

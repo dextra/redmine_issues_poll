@@ -10,9 +10,9 @@
 
 
 <p>
-	<h3><%= t(:label_config_hours) %></h3>
-	<% form_tag :controller => 'polls', :action => 'set_hours' do %>
-		<p><label><%= l(:field_hours) %></label> <%= text_field_tag :hours %></p>
+	<h3><%= t(:label_config_votes) %></h3>
+	<% form_tag :controller => 'polls', :action => 'set_votes' do %>
+		<p><label><%= l(:label_field_votes) %></label> <%= text_field_tag :votes %></p>
 		<%= submit_tag l(:button_assign) %>
 	<% end %>
 </p>

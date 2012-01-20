@@ -1,19 +1,16 @@
-<% content_for :header_tags do %>
-<%= stylesheet_link_tag 'style', :plugin => 'redmine_issues_polls' %>
-<% end %>
 <div id="rmipoll">
 	<%= error_messages_for :bet %>
 	<ul>
 		<li class="worktime">
-			<a href="#" title="<%= t(:label_task_hours_bet) %>"><%= t(:label_task_hours_bet) %> </a><span><%= @issue.bet_hours %></span>
+			<a href="#" title="<%= t(:label_issue_votes) %>"><%= t(:label_issue_votes) %> </a><span><%= @issue.bet_votes %></span>
 			<p>
-				<%= t(:label_task_hours_bet) %>
+				<%= t(:label_issue_votes) %>
 			</p>
 		</li>
 		<li class="usertime">
-			<a href="#" title="<%= t(:label_user_hours) %>"><%= t(:label_user_hours) %></a><span><%= User.current.polls_hours_project(@project.id) %></span>
+			<a href="#" title="<%= t(:label_user_votes) %>"><%= t(:label_user_votes) %></a><span><%= User.current.polls_votes_project(@project.id) %></span>
 			<p>
-				<%= t(:label_user_hours) %>
+				<%= t(:label_user_votes) %>
 			</p>
 		</li>
 		<li class="sharetime">
@@ -26,32 +23,35 @@
 			:complete => "Form.Element.focus('relation_issue_to_id');",
 			:html => {:id => 'issues-polls-form'}) do |f| %>
 
-			<%= f.select :hours, 1..User.current.polls_hours_project(@project.id), {} %>
+			<%= f.select :votes, 1..User.current.polls_votes_project(@project.id), {} %>
 
 			<%= submit_tag l(:button_bet) %>
 
 			<% end %>
 
 			<% end %>
+			<p>
+				<%= t(:label_bet_votes) %>
+			</p>
 		</li>
 		<li class="viewAll">
 			<%= toggle_link l(:link_see_members), 'poll-members' %>
 			<p>
-				Ver todas as apostas
+				<%= t(:link_see_members) %>
 			</p>
 		</li>
 	</ul>
 	<table class="list" id="poll-members" style="display: none">
 		<tbody>
 			<tr>
-				<th> <%= t(:label_user_name) %>: </th>
-				<th> <%= t(:label_hours_bet) %>: </th>
+				<th> <%= t(:label_user_name) %> </th>
+				<th> <%= t(:label_votes_bet) %> </th>
 				<th></th>
 			</tr>
-			<% @issue.bets.each do |bet| %>
+			<% @issue.valid_bets.each do |bet| %>
 			<tr>
-				<td> <%= bet.user.name %> </td>
-				<td> <%= bet.hours %> </td>
+				<td> <%= bet.author.name(:firstname_lastname) %> </td>
+				<td> <%= bet.sum_votes %> </td>
 				<td> <% if bet.user_id == User.current.id and @issue.can_receive_bet? %>
 				<%= link_to_remote t(:link_cancel_bet), :url => {:controller => 'polls', :action => 'cancel_bet', :issue_id => @issue.id, :project_id => @issue.project_id}, :confirm => t(:confirm_cancel_bet) %>
 				<% end %> </td>

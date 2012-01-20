@@ -1,9 +1,6 @@
 .issue {
 	position: relative;
-}
-div.issue div.subject h3 {
-	line-height: 40px;
-	padding-right: 280px;
+	margin-top:42px;
 }
 #issues_polls_area {
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -13,8 +10,8 @@ div.issue div.subject h3 {
 	line-height: 28px;
 	padding: 3px;
 	position: absolute;
-	right: 5px;
-	top: 6px;
+	right: 0;
+	top: -40px;
 	width: auto;
 }
 #rmipoll ul {
@@ -84,4 +81,8 @@ div.issue div.subject h3 {
 	right: 1px;
 	top: 43px;
 	width: 800px;
+}
+
+.view_votes_toggle {
+	cursor: pointer;
 }

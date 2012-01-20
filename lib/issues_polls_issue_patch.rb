@@ -18,6 +18,13 @@ module IssuesPollsIssuePatch
     def can_receive_bet?
       EligibleStatus.find(:all).collect{|status| status.status_id}.include?(self.status_id)
     end
+    
+    def valid_bets
+      self.bets.all(
+        :select => "sum(votes) as sum_votes, user_id",
+        :group => "user_id"
+      ).select {|b| b.sum_votes.to_i > 0}
+    end
   end
   
 end

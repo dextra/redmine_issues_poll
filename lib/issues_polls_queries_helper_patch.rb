@@ -48,8 +48,12 @@ module IssuesPollsQueriesHelperPatch
       end
       #### Only this was added ####
       if @project.enabled_module_names.include?('issues_polls')
-        Query.available_columns << QueryColumn.new(:bet_hours, :sortable => "#{Issue.table_name}.bet_hours", :default_order => 'desc')
-        Setting.issue_list_default_columns << "bet_hours"
+        unless Query.available_columns.collect{|c|c.name}.include?(:bet_votes)
+          Query.available_columns << QueryColumn.new(:bet_votes, :sortable => "#{Issue.table_name}.bet_votes", :default_order => 'desc')
+          Setting.issue_list_default_columns << "bet_votes"
+        end
+      else
+        Query.available_columns.delete_if{|c| c.name == :bet_votes}
       end
       ##############################
     end
