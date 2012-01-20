@@ -29,9 +29,15 @@ class Bet < ActiveRecord::Base
       end
     end
     
-    if has_author and has_issue and self.votes > 0
-      if not self.author.can_bet?(issue.project_id)
-        self.errors.add_to_base(I18n.t(:error_not_enough_votes))
+    if has_author and has_issue
+      if self.votes > 0
+        if not self.author.can_bet?(issue.project_id)
+          self.errors.add_to_base(I18n.t(:error_not_enough_votes))
+        end
+      else
+        if self.author.votes_bet_by_issue(issue.id) <=0
+          self.errors.add_to_base(I18n.t(:error_invalid_votes))
+        end
       end
     end
     

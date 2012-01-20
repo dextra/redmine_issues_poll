@@ -129,7 +129,7 @@ class PollsController < ApplicationController
       votes *= -1
     end
     params[:bet] = {:votes => votes}
-    redirect_to :action => :bet, :issue_id => params[:issue_id], :project_id => params[:project_id], :bet => params[:bet]
+    bet
   end
   
   private
