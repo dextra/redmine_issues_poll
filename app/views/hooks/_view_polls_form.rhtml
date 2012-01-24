@@ -2,7 +2,8 @@
 	<%= error_messages_for :bet %>
 	<ul>
 		<li class="worktime">
-			<a href="#" title="<%= t(:label_issue_votes) %>"><%= t(:label_issue_votes) %> </a><span><%= @issue.bet_votes %></span>
+			<%= toggle_link t(:label_issue_votes), 'poll-members' %>
+			<span><%= @issue.bet_votes %></span>
 			<p>
 				<%= t(:label_issue_votes) %>
 			</p>
@@ -32,12 +33,6 @@
 			<% end %>
 			<p>
 				<%= t(:label_bet_votes) %>
-			</p>
-		</li>
-		<li class="viewAll">
-			<%= toggle_link l(:link_see_members), 'poll-members' %>
-			<p>
-				<%= t(:link_see_members) %>
 			</p>
 		</li>
 	</ul>

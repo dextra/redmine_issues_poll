@@ -21,9 +21,10 @@ module IssuesPollsUserPatch
       votes.nil? ? nil : votes.votes
     end
     
-    def can_bet?(project_id)
+    def can_bet?(project_id, bet_votes)
+      project = Project.find(project_id)
       available_votes = self.polls_votes_project(project_id)
-      available_votes and available_votes > 0
+      project.enabled_module_names.include?('issues_polls') and available_votes and available_votes > bet_votes
     end
     
     def votes_bet_by_issue(issue_id)

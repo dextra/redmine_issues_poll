@@ -3,66 +3,54 @@ require File.dirname(__FILE__) + '/../test_helper'
 class BetTest < ActiveSupport::TestCase
   fixtures :bets
   
+  def setup
+    @user = User.generate!
+    @project = Project.generate!
+    @issue = Issue.generate_for_project!(@project)
+    @eligible_status = EligibleStatus.generate!
+    @issue.status_id = @eligible_status.status_id
+    @user.poll_votes << @project.poll_votes.new(:votes => 4)
+  end
+  
   def test_should_not_save_without_votes
     bet = new_bet
     bet.votes = nil
     assert !bet.save, "bet without votes"
   end
   
-  def test_should_not_save_without_user_id
+  def test_should_not_save_without_author
     bet = new_bet
-    bet.user_id = nil
-    assert !bet.save, "bet without user_id"
+    bet.author = nil
+    assert !bet.save, "bet without author"
   end
   
   
-  def test_should_not_save_without_issue_id
+  def test_should_not_save_without_issue
     bet = new_bet
-    bet.issue_id = nil
-    assert !bet.save, "bet without issue_id"
+    bet.issue = nil
+    assert !bet.save, "bet without issue"
   end
   
   def test_should_not_save_without_enough_votes
     bet = new_bet
+    bet.votes = 6
     assert !bet.save, "user without enough votes"
   end
   
+  def test_should_not_save_with_less_votes
+    bet = new_bet
+    bet.votes = -16
+    assert !bet.save, "user with less votes"
+  end
+  
+  def test_should_not_save_with_zero_votes
+    bet = new_bet
+    bet.votes = 0
+    assert !bet.save, "user with zero votes"
+  end
+  
   def new_bet
-    user = create_user
-    project = create_project
-    add_member(user.id, project.id)
-    issue = create_issue(project.id)
-    bet = Bet.new(:votes => 1, :issue_id => issue.id, :user_id => user.id)
-  end
-  
-  def create_user
-    u = User.new
-    u.login = 'user_test'
-    u.firstname = 'user'
-    u.lastname = 'test'
-    u.mail = 'user_tast@test.com'
-    u.save
-    u
-  end
-  
-  def create_project
-    Project.create(
-      :name => "Project test",
-      :identifier => "project-test"
-    )
-  end
-
-  def create_issue(project_id)
-    i = Issue.create(:subject => "Issue test", :project_id => project_id, :tracker_id => 2, :author_id => 1 )
-    i    
-  end
-  
-  def add_member(user_id, project_id)
-    m = Member.new
-    m.user_id = user_id
-    m.project_id = project_id
-    m.save
-    MemberRole.create(:member_id => m.id, :role_id => 1)
+    Bet.new(:votes => 1, :issue => @issue, :author => @user)
   end
   
 end

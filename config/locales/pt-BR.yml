@@ -29,6 +29,7 @@ pt-BR:
   link_cancel_bet: "cancelar"
   link_see_members: "Ver votos"
   confirm_cancel_bet: "Deseja cancelar o voto?"
+  confirm_set_votes: "Esta ação irá setar os votos de todos os membros do projeto. Deseja continuar?"
   error_not_enough_votes: "Você não tem votos suficientes"
   error_invalid_votes: "Votos inválidas"
   permission_polls_config: "Configurar"

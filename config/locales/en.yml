@@ -29,6 +29,7 @@ en:
   link_cancel_bet: "Cancel bet"
   link_see_members: "See members"
   confirm_cancel_bet: "Are you want to cancel bet?"
+  confirm_set_votes: "This action will be set votes of all members. Do you want to continue?"
   error_not_enough_votes: "You do not have enough votes to this bet"
   error_invalid_votes: "Invalid votes"
   permission_polls_config: "Configuration"

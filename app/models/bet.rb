@@ -16,7 +16,7 @@ class Bet < ActiveRecord::Base
     :author_key => :user_id
 
   
-  validates_presence_of :votes, :user_id, :issue_id
+  validates_presence_of :votes, :author, :issue
   
   def validate
     if self.author
@@ -30,9 +30,9 @@ class Bet < ActiveRecord::Base
       end
     end
     
-    if has_author and has_issue
+    if has_author and has_issue and self.votes
       if self.votes > 0
-        if not self.author.can_bet?(issue.project_id)
+        if not self.author.can_bet?(issue.project_id, self.votes)
           self.errors.add_to_base(I18n.t(:error_not_enough_votes))
         end
       else
