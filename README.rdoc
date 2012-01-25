@@ -17,13 +17,13 @@ A redmine plugin to elect issues.
 
 1. Copy the plugin directory into #{RAILS_ROOT}/vendor/plugins. 
 
-cd #{RAILS_ROOT}/vendor/plugins
++cd #{RAILS_ROOT}/vendor/plugins+
 
-git clone git://github.com/dextra/redmine_issues_polls.git
++git clone git://github.com/dextra/redmine_issues_polls.git+
 
 2. Upgrade the database (make a db backup before):
 
-rake db:migrate:plugin NAME=redmine_issues_polls RAILS_ENV=production
++rake db:migrate:plugin NAME=redmine_issues_polls RAILS_ENV=production+
 
 3. Restart Redmine
 
@@ -35,7 +35,7 @@ You must to set permissions.
 
 1. Downgrade your database (make a db backup before):
 
-rake db:migrate:plugin NAME=redmine_issues_polls VERSION=0 RAILS_ENV=production
++rake db:migrate:plugin NAME=redmine_issues_polls VERSION=0 RAILS_ENV=production+
 
 2. Remove your plugin from #{RAILS_ROOT}/vendor/plugins.
 
