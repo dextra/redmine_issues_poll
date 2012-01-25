@@ -17,7 +17,7 @@ A redmine plugin to elect issues.
 
 1. Copy the plugin directory into #{RAILS_ROOT}/vendor/plugins. 
 
- +cd #{RAILS_ROOT}/vendor/plugins+
+ cd #{RAILS_ROOT}/vendor/plugins
 
  $ git clone git://github.com/dextra/redmine_issues_polls.git
 
