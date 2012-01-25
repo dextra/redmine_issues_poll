@@ -10,16 +10,16 @@ Dispatcher.to_prepare do
 end
 
 Redmine::Plugin.register :redmine_issues_polls do
-  name 'Redmine Issues Polls plugin'
+  name 'Redmine Issues Polls'
   author 'Dextra Sistemas'
-  description 'This is a plugin for Redmine to elect tasks'
+  description 'This is a plugin for Redmine to elect issues'
   version '0.0.1'
   url 'https://github.com/dextra/redmine_issues_polls'
   author_url 'http://www.dextra.com.br'
   
   project_module :issues_polls do
-    permission :permission_polls_config, :polls => [:index, :set_votes, :set_statuses, :update_votes]
-    permission :permission_bet, :polls => [:bet, :cancel_bet]
+    permission :polls_config, :polls => [:index, :set_votes, :set_statuses, :update_votes]
+    permission :bet, :polls => [:bet, :cancel_bet]
   end
   
   menu :project_menu, :polls, { :controller => 'polls', :action => 'index' }, :caption => :issue_polls_caption, :after => :activity, :param => :project_id

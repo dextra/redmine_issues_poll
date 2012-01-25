@@ -5,12 +5,12 @@ A redmine plugin to elect issues.
 
 == Features
 
-1. Eligible status configuration: Member with (:permission_poll_config) can set issues eligible status.
-2. Member votes configuration: Member with (:permission_poll_config) can set number of members votes.
+1. Eligible status configuration: Only members with permission to configure can set issues eligible status.
+2. Member votes configuration: Only members with permission to configure can set number of members votes.
 3. Column "votes" to issues. 
-4. Add votes to issues. 
-5. Cancel votes.
-6. See all issue's votes.
+4. Add votes to issues. Only members with permission to vote add votes.
+5. Cancel votes. Only members with permission to vote can cancel votes.
+6. See all issue's votes. Only members with permission to vote can see list of votes.
 
 
 == Instalation and setup
@@ -28,19 +28,15 @@ A redmine plugin to elect issues.
 3. Restart Redmine
 
 You should now be able to see the plugin list in Administration -> Plugins.
-You must to set permissions.
+You must to set the permissions.
 
 
 == Uninstalling
 
-1. Downgrade your database (make a db backup before):
+1. Downgrade the database (make a db backup before):
 
  rake db:migrate:plugin NAME=redmine_issues_polls VERSION=0 RAILS_ENV=production
 
-2. Remove your plugin from #{RAILS_ROOT}/vendor/plugins.
+2. Remove the plugin from #{RAILS_ROOT}/vendor/plugins.
 
 3. Restart Redmine
-
-
-== Usage
-
