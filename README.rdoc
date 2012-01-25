@@ -41,6 +41,3 @@ You must to set permissions.
 
 3. Restart Redmine
 
-
-== Usage
-
