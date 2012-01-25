@@ -13,7 +13,8 @@ class Bet < ActiveRecord::Base
   
   acts_as_activity_provider :timestamp => "#{table_name}.created_at", 
     :find_options => {:include => [{:issue => :project}, :author]},
-    :author_key => :user_id
+    :author_key => :user_id,
+    :permission => :permission_bet
 
   
   validates_presence_of :votes, :author, :issue

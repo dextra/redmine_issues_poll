@@ -15,7 +15,7 @@
 			</p>
 		</li>
 		<li class="sharetime">
-			<% if User.current.can_bet?(@issue.project_id) and @issue.can_receive_bet? %>
+			<% if User.current.can_bet?(@issue.project_id, 1) and @issue.can_receive_bet? %>
 
 			<% remote_form_for(
 			:bet, @bet,
