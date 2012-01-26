@@ -36,8 +36,8 @@ en:
   permission_bet: "Bet"
   error_issue_not_eligible: "This issue is not in elegible state"
   list_members_legend: "*Click on votes to edit"
-  permission_polls_config: "Configure"
-  permission_bet: "Vote"
+  permission_issues_polls_config: "Configure"
+  permission_issues_polls_bet: "Vote"
   project_module_issues_polls: "Issues Polls"
   vote_cancelled:
       one: "Vote canceled(-1 vote)"

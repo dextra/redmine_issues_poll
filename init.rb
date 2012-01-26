@@ -18,8 +18,8 @@ Redmine::Plugin.register :redmine_issues_polls do
   author_url 'http://www.dextra.com.br'
   
   project_module :issues_polls do
-    permission :polls_config, :polls => [:index, :set_votes, :set_statuses, :update_votes]
-    permission :bet, :polls => [:bet, :cancel_bet]
+    permission :issues_polls_config, :polls => [:index, :set_votes, :set_statuses, :update_votes]
+    permission :issues_polls_bet, :polls => [:bet, :cancel_bet]
   end
   
   menu :project_menu, :polls, { :controller => 'polls', :action => 'index' }, :caption => :issue_polls_caption, :after => :activity, :param => :project_id

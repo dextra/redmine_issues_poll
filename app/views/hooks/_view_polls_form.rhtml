@@ -9,7 +9,7 @@
 			</p>
 		</li>
 		<li class="usertime">
-			<a href="#" title="<%= t(:label_user_votes) %>"><%= t(:label_user_votes) %></a><span><%= User.current.polls_votes_project(@project.id) %></span>
+			<a href="#" title="<%= t(:label_user_votes) %>"><%= t(:label_user_votes) %></a><span><%= User.current.polls_votes_project(@project.id) || 0 %></span>
 			<p>
 				<%= t(:label_user_votes) %>
 			</p>
