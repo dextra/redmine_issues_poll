@@ -28,7 +28,10 @@ A redmine plugin to elect issues.
 3. Restart Redmine
 
 You should now be able to see the plugin list in Administration -> Plugins.
-You must to set the permissions.
+To start you must do the following:
+ * Set the permissions
+ * Set issues eligible status
+ * Set number of members votes
 
 
 == Uninstalling
