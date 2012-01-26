@@ -38,6 +38,7 @@ pt-BR:
   list_members_legend: "*Para editar clique sobre os votos"
   permission_polls_config: "Configurar"
   permission_bet: "Votar"
+  project_module_issues_polls: "Votação de tarefas"
   vote_cancelled: 
      one: "1 voto cancelado"
      other: "{{count}} votos cancelados"

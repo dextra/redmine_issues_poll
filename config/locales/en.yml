@@ -1,7 +1,7 @@
 # English strings go here for Rails i18n
 en:
-  issue_polls_caption: "Issue Polls" 
-  issue_polls_dashboard: "Issue Polls - dashboard"
+  issue_polls_caption: "Issues Polls" 
+  issue_polls_dashboard: "Issues Polls - dashboard"
   label_user_login: "Login"
   label_user_fullname: "Full Name"
   label_user_votes: "Available votes"
@@ -36,6 +36,9 @@ en:
   permission_bet: "Bet"
   error_issue_not_eligible: "This issue is not in elegible state"
   list_members_legend: "*Click on votes to edit"
+  permission_polls_config: "Configure"
+  permission_bet: "Vote"
+  project_module_issues_polls: "Issues Polls"
   vote_cancelled:
       one: "Vote canceled(-1 vote)"
       other: "Votes canceleds({{count}} votes)"
