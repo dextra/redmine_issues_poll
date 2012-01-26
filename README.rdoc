@@ -5,12 +5,11 @@ A redmine plugin to elect issues.
 
 == Features
 
-1. Eligible status configuration: Only members with permission to configure can set issues eligible status.
-2. Member votes configuration: Only members with permission to configure can set number of members votes.
-3. Column "votes" to issues. 
-4. Add votes to issues. Only members with permission to vote add votes.
-5. Cancel votes. Only members with permission to vote can cancel votes.
-6. See all issue's votes. Only members with permission to vote can see list of votes.
+1. Ability to set which issue status can receive votes.
+2. Ability to set the number of votes a member can give in the project.
+3. Ability to voto in issues.
+4. Ability to cancel a vote.
+5. Ability to see all votos of each issue.
 
 
 == Instalation and setup
@@ -28,10 +27,10 @@ A redmine plugin to elect issues.
 3. Restart Redmine
 
 You should now be able to see the plugin list in Administration -> Plugins.
-To start you must do the following:
-* Set the permissions
+Configure the plugin as follows:
+* Set permissions
 * Set issues eligible status
-* Set number of members votes
+* Set number of member votes per project
 
 
 == Uninstalling
