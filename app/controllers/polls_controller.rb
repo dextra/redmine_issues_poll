@@ -109,7 +109,7 @@ class PollsController < ApplicationController
         @issue.bet_votes ||= 0
         @issue.bet_votes += @bet.votes
         @issue.save
-        page.replace_html :issues_polls_area, :partial => 'hooks/view_polls_form'
+        page.replace_html :issues_poll_area, :partial => 'hooks/view_polls_form'
         if @bet.votes > 0
           page.alert(t(:bet_successful_created))
         else

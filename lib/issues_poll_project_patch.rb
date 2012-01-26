@@ -1,6 +1,6 @@
 require_dependency 'project'
 
-module IssuesPollsProjectPatch
+module IssuesPollProjectPatch
   def self.included(base)
     base.extend(ClassMethods)
     base.send(:include, InstanceMethods)
@@ -19,4 +19,4 @@ module IssuesPollsProjectPatch
   
 end
 
-Project.send(:include, IssuesPollsProjectPatch) unless Project.included_modules.include? IssuesPollsProjectPatch
+Project.send(:include, IssuesPollProjectPatch) unless Project.included_modules.include? IssuesPollProjectPatch

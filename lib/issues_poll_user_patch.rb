@@ -1,6 +1,6 @@
 require_dependency 'user'
 
-module IssuesPollsUserPatch
+module IssuesPollUserPatch
   def self.included(base)
     base.extend(ClassMethods)
     base.send(:include, InstanceMethods)
@@ -24,7 +24,7 @@ module IssuesPollsUserPatch
     def can_bet?(project_id, bet_votes)
       project = Project.find(project_id)
       available_votes = self.polls_votes_project(project_id)
-      project.enabled_module_names.include?('issues_polls') and available_votes and available_votes > bet_votes
+      project.enabled_module_names.include?('issues_poll') and available_votes and available_votes > bet_votes
     end
     
     def votes_bet_by_issue(issue_id)
@@ -34,4 +34,4 @@ module IssuesPollsUserPatch
   
 end
 
-User.send(:include, IssuesPollsUserPatch) unless User.included_modules.include? IssuesPollsUserPatch
+User.send(:include, IssuesPollUserPatch) unless User.included_modules.include? IssuesPollUserPatch

@@ -1,6 +1,6 @@
 require_dependency 'queries_helper'
 
-module IssuesPollsQueriesHelperPatch
+module IssuesPollQueriesHelperPatch
   def self.included(base)
     base.extend(ClassMethods)
     base.send(:include, InstanceMethods)
@@ -47,7 +47,7 @@ module IssuesPollsQueriesHelperPatch
         end
       end
       #### Only this was added ####
-      if @project.enabled_module_names.include?('issues_polls')
+      if @project.enabled_module_names.include?('issues_poll')
         unless Query.available_columns.collect{|c|c.name}.include?(:bet_votes)
           Query.available_columns << QueryColumn.new(:bet_votes, :sortable => "#{Issue.table_name}.bet_votes", :default_order => 'desc')
           Setting.issue_list_default_columns << "bet_votes"
@@ -61,4 +61,4 @@ module IssuesPollsQueriesHelperPatch
   
 end
 
-QueriesHelper.send(:include, IssuesPollsQueriesHelperPatch) unless QueriesHelper.included_modules.include? IssuesPollsQueriesHelperPatch
+QueriesHelper.send(:include, IssuesPollQueriesHelperPatch) unless QueriesHelper.included_modules.include? IssuesPollQueriesHelperPatch

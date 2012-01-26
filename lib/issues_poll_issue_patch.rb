@@ -1,6 +1,6 @@
 require_dependency 'issue'
 
-module IssuesPollsIssuePatch
+module IssuesPollIssuePatch
   def self.included(base)
     base.extend(ClassMethods)
     base.send(:include, InstanceMethods)
@@ -29,4 +29,4 @@ module IssuesPollsIssuePatch
   
 end
 
-Issue.send(:include, IssuesPollsIssuePatch) unless Issue.included_modules.include? IssuesPollsIssuePatch
+Issue.send(:include, IssuesPollIssuePatch) unless Issue.included_modules.include? IssuesPollIssuePatch

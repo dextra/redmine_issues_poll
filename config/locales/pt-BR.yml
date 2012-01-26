@@ -36,9 +36,9 @@ pt-BR:
   permission_bet: "Votar"
   error_issue_not_eligible: "Esta tarefa não está em estado elegível"
   list_members_legend: "*Para editar clique sobre os votos"
-  permission_issues_polls_config: "Configurar"
-  permission_issues_polls_bet: "Votar"
-  project_module_issues_polls: "Votação de ideias"
+  permission_issues_poll_config: "Configurar"
+  permission_issues_poll_bet: "Votar"
+  project_module_issues_poll: "Votação de ideias"
   vote_cancelled: 
      one: "1 voto cancelado"
      other: "{{count}} votos cancelados"

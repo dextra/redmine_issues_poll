@@ -1,4 +1,4 @@
-= Redmine Issues Polls
+= Redmine Issues Poll
 
 A redmine plugin to elect issues.
 
@@ -18,11 +18,11 @@ A redmine plugin to elect issues.
 
  cd #{RAILS_ROOT}/vendor/plugins
 
- git clone git://github.com/dextra/redmine_issues_polls.git
+ git clone git://github.com/dextra/redmine_issues_poll.git
 
 2. Upgrade the database (make a db backup before):
 
- rake db:migrate:plugin NAME=redmine_issues_polls RAILS_ENV=production
+ rake db:migrate:plugin NAME=redmine_issues_poll RAILS_ENV=production
 
 3. Restart Redmine
 
@@ -37,7 +37,7 @@ Configure the plugin as follows:
 
 1. Downgrade the database (make a db backup before):
 
- rake db:migrate:plugin NAME=redmine_issues_polls VERSION=0 RAILS_ENV=production
+ rake db:migrate:plugin NAME=redmine_issues_poll VERSION=0 RAILS_ENV=production
 
 2. Remove the plugin from #{RAILS_ROOT}/vendor/plugins.
 
