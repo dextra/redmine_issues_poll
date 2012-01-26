@@ -4,16 +4,16 @@ module IssuesPollQueriesHelperPatch
   def self.included(base)
     base.extend(ClassMethods)
     base.send(:include, InstanceMethods)
-    
+
     base.class_eval do
       alias_method_chain :retrieve_query, :aditional_column
     end
-    
+
   end
-  
+
   module ClassMethods
   end
-  
+
   module InstanceMethods
     def retrieve_query_with_aditional_column
       if !params[:query_id].blank?
@@ -47,7 +47,7 @@ module IssuesPollQueriesHelperPatch
         end
       end
       #### Only this was added ####
-      if @project.enabled_module_names.include?('issues_poll')
+      if @project and @project.enabled_module_names.include?('issues_poll')
         unless Query.available_columns.collect{|c|c.name}.include?(:bet_votes)
           Query.available_columns << QueryColumn.new(:bet_votes, :sortable => "#{Issue.table_name}.bet_votes", :default_order => 'desc')
           Setting.issue_list_default_columns << "bet_votes"
@@ -58,7 +58,7 @@ module IssuesPollQueriesHelperPatch
       ##############################
     end
   end
-  
+
 end
 
 QueriesHelper.send(:include, IssuesPollQueriesHelperPatch) unless QueriesHelper.included_modules.include? IssuesPollQueriesHelperPatch
