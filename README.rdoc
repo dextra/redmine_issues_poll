@@ -29,9 +29,9 @@ A redmine plugin to elect issues.
 
 You should now be able to see the plugin list in Administration -> Plugins.
 To start you must do the following:
- * Set the permissions
- * Set issues eligible status
- * Set number of members votes
+* Set the permissions
+* Set issues eligible status
+* Set number of members votes
 
 
 == Uninstalling
