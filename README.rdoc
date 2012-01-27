@@ -14,17 +14,17 @@ A redmine plugin to elect issues.
 
 == Instalation and setup
 
-1. Copy the plugin directory into #{RAILS_ROOT}/vendor/plugins. 
+* Copy the plugin directory into #{RAILS_ROOT}/vendor/plugins. 
 
  cd #{RAILS_ROOT}/vendor/plugins
 
  git clone git://github.com/dextra/redmine_issues_poll.git
 
-2. Upgrade the database (make a db backup before):
+* Upgrade the database (make a db backup before):
 
  rake db:migrate:plugin NAME=redmine_issues_poll RAILS_ENV=production
 
-3. Restart Redmine
+* Restart Redmine
 
 You should now be able to see the plugin list in Administration -> Plugins.
 
@@ -39,10 +39,10 @@ In the project administration:
 
 == Uninstalling
 
-1. Downgrade the database (make a db backup before):
+* Downgrade the database (make a db backup before):
 
  rake db:migrate:plugin NAME=redmine_issues_poll VERSION=0 RAILS_ENV=production
 
-2. Remove the plugin from #{RAILS_ROOT}/vendor/plugins.
+* Remove the plugin from #{RAILS_ROOT}/vendor/plugins.
 
-3. Restart Redmine
+* Restart Redmine
