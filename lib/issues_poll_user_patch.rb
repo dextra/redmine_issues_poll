@@ -32,13 +32,13 @@ module IssuesPollUserPatch
   module InstanceMethods
     def polls_votes_project(project_id)
       votes = poll_votes.find(:first, :conditions => ["project_id = ?", project_id])
-      votes.nil? ? nil : votes.votes
+      votes.nil? ? nil : votes.votes.to_i
     end
     
     def can_bet?(project_id, bet_votes)
       project = Project.find(project_id)
       available_votes = self.polls_votes_project(project_id)
-      project.enabled_module_names.include?('issues_poll') and available_votes and available_votes > bet_votes
+      project.enabled_module_names.include?('issues_poll') and available_votes and available_votes >= bet_votes
     end
     
     def votes_bet_by_issue(issue_id)
