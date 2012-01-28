@@ -54,6 +54,7 @@ module IssuesPollQueriesHelperPatch
         end
       else
         Query.available_columns.delete_if{|c| c.name == :bet_votes}
+        Setting.issue_list_default_columns.delete( "bet_votes" )
       end
       ##############################
     end
