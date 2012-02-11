@@ -36,7 +36,7 @@ Redmine::Plugin.register :redmine_issues_poll do
     permission :issues_poll_bet, :polls => [:bet, :cancel_bet]
   end
   
-  menu :project_menu, :polls, { :controller => 'polls', :action => 'index' }, :caption => :issue_polls_caption, :after => :activity, :param => :project_id
+  menu :project_menu, :issues_poll_menu, { :controller => 'polls', :action => 'index' }, :caption => :issue_polls_caption, :after => :activity, :param => :project_id
   
   activity_provider :bets
   
