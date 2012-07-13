@@ -3,6 +3,10 @@
 A redmine plugin to elect issues.
 
 
+== Compatibility
+
+This Branch is compatible with redmine 1.3.*
+
 == Features
 
 1. Ability to set which issue status can receive votes.
