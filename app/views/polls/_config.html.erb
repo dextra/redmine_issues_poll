@@ -14,7 +14,7 @@ limitations under the License. -->
 
 <p>
 	<h3><%= t(:label_config_status) %></h3>
-	<% form_tag :action => :set_statuses do %>
+	<%= form_tag :action => :set_statuses do %>
 		<% @statuses.each do |status| %>
 		  <p><%= check_box_tag "statuses[]", status.id, @eligible_statuses.include?(status.id), :id => "status#{status.id}" %><label for="status<%= status.id%>"><%= status.name %></label></p>
 		<% end %>
@@ -24,7 +24,7 @@ limitations under the License. -->
 
 <p>
 	<h3><%= t(:label_config_votes) %></h3>
-	<% form_tag :controller => 'polls', :action => 'set_votes' do %>
+	<%= form_tag :controller => 'polls', :action => 'set_votes' do %>
 		<p><label><%= t(:label_field_votes) %></label> <%= text_field_tag :votes %></p>
 		<%= submit_tag t(:button_assign), :confirm => t(:confirm_set_votes) %>
 	<% end %>

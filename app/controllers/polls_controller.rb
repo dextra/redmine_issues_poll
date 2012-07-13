@@ -18,8 +18,6 @@ class PollsController < ApplicationController
   before_filter :find_project, :authorize
   before_filter :get_statuses, :only => [:index, :set_statuses]
   
-  verify :method => [:post], :only => [:set_votes, :set_statuses, :update_votes], :render => { :nothing => true, :status => :method_not_allowed }
-  
   def get_statuses
     @statuses = IssueStatus.find(:all, :order => 'position')
     @eligible_statuses = EligibleStatus.find(:all).collect{ |status| status.status_id }

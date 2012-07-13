@@ -13,9 +13,8 @@
 #  limitations under the License.
 
 require 'redmine'
-require 'dispatcher'
 
-Dispatcher.to_prepare do
+ActionDispatch::Callbacks.to_prepare do
   require_dependency 'issues_poll_issue_patch'
   require_dependency 'issues_poll_queries_helper_patch'
   require_dependency 'issues_poll_user_patch'

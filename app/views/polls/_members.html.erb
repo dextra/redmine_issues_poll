@@ -44,7 +44,7 @@ limitations under the License. -->
 	            <td>
 	            	<span id="view_votes_<%=user['id']%>" class="view_votes_toggle" onclick="toggleForm(<%=user['id']%>);"><%= user['votes'] %></span>
 					<span id="view_form_<%=user['id']%>" class="form_votes_toggle" style="display:none;">
-						<% form_remote_tag :url => {:action => 'update_votes', :user_id => user['id']} do %>
+						<%= form_remote_tag :url => {:action => 'update_votes', :user_id => user['id']} do %>
 							<%= text_field_tag :votes, user['votes']%>
 							<%= submit_tag t(:label_update_votes) %>
 							<%= button_to_function t(:button_cancel), "toggleForm(#{user['id']});"%>
