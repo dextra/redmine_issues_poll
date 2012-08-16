@@ -55,7 +55,7 @@ de:
   project_module_issues_poll: "Ticket-Abstimmung"
   vote_cancelled:
       one: "1 Abstimmung widerrufen"
-      other: "{{count}} Abstimmungen widerrufen"
+      other: "%{count} Abstimmungen widerrufen"
   vote_added:
       one: "1 Stimme hinzugefügt"
-      other: "{{count}} Stimmen hinzugefügt"
+      other: "%{count} Stimmen hinzugefügt"

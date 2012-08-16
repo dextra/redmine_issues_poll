@@ -55,8 +55,8 @@ pt-BR:
   project_module_issues_poll: "Votação de ideias"
   vote_cancelled: 
      one: "1 voto cancelado"
-     other: "{{count}} votos cancelados"
+     other: "%{count} votos cancelados"
   vote_added:
      one: "1 voto adicionado" 
-     other: "{{count}} votos adicionados"
+     other: "%{count} votos adicionados"
  

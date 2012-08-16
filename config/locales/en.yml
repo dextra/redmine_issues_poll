@@ -55,7 +55,7 @@ en:
   project_module_issues_poll: "Issues Poll"
   vote_cancelled:
       one: "1 vote canceled"
-      other: "{{count}} votes canceled"
+      other: "%{count} votes canceled"
   vote_added:
       one: "1 vote added" 
-      other: "{{count}} votes added"
+      other: "%{count} votes added"
