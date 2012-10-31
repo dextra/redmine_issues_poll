@@ -31,8 +31,9 @@ limitations under the License. -->
 		<li class="sharetime">
 			<% if User.current.can_bet?(@issue.project_id, 1) and @issue.can_receive_bet? %>
 
-			<%= remote_form_for(
+			<%= form_for(
 			:bet, @bet,
+			:remote => true,
 			:url => {:controller => 'polls', :action => 'bet', :issue_id => @issue.id, :project_id => @issue.project_id},
 			:method => :post,
 			:complete => "Form.Element.focus('relation_issue_to_id');",
