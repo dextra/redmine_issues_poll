@@ -13,7 +13,6 @@ See the License for the specific language governing permissions and
 limitations under the License. -->
 
 <div id="rmipoll">
-	<%= error_messages_for @bet %>
 	<ul>
 		<li class="worktime">
 			<%= toggle_link t(:label_issue_votes), 'poll-members' %>
@@ -32,7 +31,7 @@ limitations under the License. -->
 			<% if User.current.can_bet?(@issue.project_id, 1) and @issue.can_receive_bet? %>
 
 			<%= form_for(
-			:bet, @bet,
+			:bet,
 			:remote => true,
 			:url => {:controller => 'polls', :action => 'bet', :issue_id => @issue.id, :project_id => @issue.project_id},
 			:method => :post,
