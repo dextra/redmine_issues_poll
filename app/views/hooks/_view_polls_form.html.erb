@@ -31,12 +31,12 @@ limitations under the License. -->
 			<% if User.current.can_bet?(@issue.project_id, 1) and @issue.can_receive_bet? %>
 
 			<%= form_for(
-			:bet,
-			:remote => true,
-			:url => {:controller => 'polls', :action => 'bet', :issue_id => @issue.id, :project_id => @issue.project_id},
-			:method => :post,
-			:complete => "Form.Element.focus('relation_issue_to_id');",
-			:html => {:id => 'issues-polls-form'}) do |f| %>
+				:bet,
+				:remote => true,
+				:url => {:controller => 'polls', :action => 'bet', :issue_id => @issue.id, :project_id => @issue.project_id},
+				:method => :post,
+				:complete => "Form.Element.focus('relation_issue_to_id');",
+				:html => {:id => 'issues-polls-form'}) do |f| %>
 
 			<%= f.select :votes, 1..User.current.polls_votes_project(@project.id), {} %>
 
@@ -62,7 +62,10 @@ limitations under the License. -->
 				<td> <%= bet.author.name(:firstname_lastname) %> </td>
 				<td> <%= bet.sum_votes %> </td>
 				<td> <% if bet.user_id == User.current.id and @issue.can_receive_bet? %>
-				<%= link_to_remote t(:link_cancel_bet), :url => {:controller => 'polls', :action => 'cancel_bet', :issue_id => @issue.id, :project_id => @issue.project_id}, :confirm => t(:confirm_cancel_bet) %>
+				<%= link_to t(:link_cancel_bet), 
+					url_for(:controller => 'polls', :action => 'cancel_bet', :issue_id => @issue.id, :project_id => @issue.project_id), 
+					:confirm => t(:confirm_cancel_bet),
+					:remote => true %>
 				<% end %> </td>
 			</tr>
 			<% end %>

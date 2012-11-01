@@ -15,8 +15,14 @@
 module IssuesPoll
   
   class Hooks < Redmine::Hook::ViewListener
-    render_on :view_issues_show_description_bottom, :partial => 'hooks/view_polls_info'
    
+    def view_issues_show_description_bottom(context={})
+      context[:controller].send(:render_to_string, {
+        :partial => 'hooks/view_polls_info',
+        :locals => context
+      })
+    end
+    
     def view_layouts_base_html_head(context={})
       stylesheet_link_tag 'style', :plugin => 'redmine_issues_poll'
     end

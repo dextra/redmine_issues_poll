@@ -44,7 +44,7 @@ limitations under the License. -->
 	            <td>
 	            	<span id="view_votes_<%=user['id']%>" class="view_votes_toggle" onclick="toggleForm(<%=user['id']%>);"><%= user['votes'] %></span>
 					<span id="view_form_<%=user['id']%>" class="form_votes_toggle" style="display:none;">
-						<%= form_tag :url => {:action => 'update_votes', :user_id => user['id']}, :remote => true do %>
+						<%= form_tag url_for(:action => 'update_votes', :user_id => user['id']), :remote => true do %>
 							<%= text_field_tag :votes, user['votes']%>
 							<%= submit_tag t(:label_update_votes) %>
 							<%= button_to_function t(:button_cancel), "toggleForm(#{user['id']});"%>
@@ -60,20 +60,7 @@ limitations under the License. -->
 
 <script type="text/javascript">
 	function toggleForm(id) {
-		$$('.form_votes_toggle').without($('view_form_'+id)).each(function(e){
-		  e.hide();
-		})
-		$$('.view_votes_toggle').without($('view_votes_'+id)).each(function(e){
-		  e.show();
-		})
-		var view_votes = $('view_votes_'+id);
-		var view_form = $('view_form_'+id);
-		if(view_votes.style.display == 'none'){
-			view_votes.show();
-			view_form.hide();
-		} else {
-			view_form.show();
-			view_votes.hide();
-		}
+		$('#view_form_'+id).toggle();
+		$('#view_votes_'+id).toggle();
 	}
 </script>

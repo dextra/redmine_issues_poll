@@ -4,7 +4,7 @@ A redmine plugin to elect issues.
 
 == Compatibility
 
-* Compatible with redmine 2.0.3
+* Compatible with redmine 2.1.2
 * For redmine 1.3.* go to https://github.com/dextra/redmine_issues_poll/tree/old
 
 == Features
