@@ -26,7 +26,7 @@ Redmine::Plugin.register :redmine_issues_poll do
   name 'Redmine Issues Poll'
   author 'Dextra Sistemas'
   description 'This is a plugin for Redmine to elect issues'
-  version '0.0.1'
+  version '0.1.0'
   url 'https://github.com/dextra/redmine_issues_poll'
   author_url 'http://www.dextra.com.br'
   
