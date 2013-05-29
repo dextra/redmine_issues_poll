@@ -1,4 +1,4 @@
-#  Copyright 2011/2012 Dextra Sistemas
+#  Copyright 2011/2013 Dextra Sistemas
 #  
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -12,23 +12,29 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-
-
-module IssuesPollProjectPatch
-  def self.included(base)
+module IssuesPollQueryPatch
+  def self.included(base) # :nodoc:
     base.extend(ClassMethods)
+
     base.send(:include, InstanceMethods)
-    
+
     base.class_eval do
-      has_many :poll_votes
+      base.add_available_column(QueryColumn.new(:bet_votes, :sortable => "#{Issue.table_name}.bet_votes"))
     end
-    
   end
-  
+
   module ClassMethods
+    # Setter for +available_columns+ that isn't provided by the core.
+    def available_columns=(v)
+      self.available_columns = (v)
+    end
+
+    # Method to add a column to the +available_columns+ that isn't provided by the core.
+    def add_available_column(column)
+      self.available_columns << (column)
+    end
   end
   
   module InstanceMethods
   end
-  
 end

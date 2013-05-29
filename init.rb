@@ -15,18 +15,41 @@
 require 'redmine'
 
 ActionDispatch::Callbacks.to_prepare do
-  require_dependency 'issues_poll_issue_patch'
-  require_dependency 'issues_poll_queries_helper_patch'
-  require_dependency 'issues_poll_user_patch'
-  require_dependency 'issues_poll_project_patch'
   require_dependency 'issues_poll_hook'
+
+  require_dependency 'user'
+  unless User.included_modules.include? IssuesPollUserPatch
+    User.send(:include, IssuesPollUserPatch)
+  end
+
+  require_dependency 'project'
+  unless Project.included_modules.include? IssuesPollProjectPatch
+    Project.send(:include, IssuesPollProjectPatch)
+  end
+  
+  require_dependency 'issue'
+  unless Issue.included_modules.include? IssuesPollIssuePatch
+    Issue.send(:include, IssuesPollIssuePatch)
+  end
+
+  if (Redmine::VERSION::MAJOR > 2) || (Redmine::VERSION::MAJOR == 2 && Redmine::VERSION::MINOR >= 3)
+    require_dependency "issue_query"
+    unless IssueQuery.included_modules.include?(IssuesPollQueryPatch)
+      IssueQuery.send(:include, IssuesPollQueryPatch)
+    end
+  else
+    require_dependency "query"
+    unless Query.included_modules.include?(IssuesPollQueryPatch)
+      Query.send(:include, IssuesPollQueryPatch)
+    end
+  end
 end
 
 Redmine::Plugin.register :redmine_issues_poll do
   name 'Redmine Issues Poll'
   author 'Dextra Sistemas'
   description 'This is a plugin for Redmine to elect issues'
-  version '0.1.0'
+  version '0.2.0'
   url 'https://github.com/dextra/redmine_issues_poll'
   author_url 'http://www.dextra.com.br'
   

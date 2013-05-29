@@ -12,8 +12,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-require_dependency 'issue'
-
 module IssuesPollIssuePatch
   def self.included(base)
     base.extend(ClassMethods)
@@ -42,5 +40,3 @@ module IssuesPollIssuePatch
   end
   
 end
-
-Issue.send(:include, IssuesPollIssuePatch) unless Issue.included_modules.include? IssuesPollIssuePatch

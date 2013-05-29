@@ -12,8 +12,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-require_dependency 'user'
-
 module IssuesPollUserPatch
   def self.included(base)
     base.extend(ClassMethods)
@@ -23,7 +21,6 @@ module IssuesPollUserPatch
       has_many :poll_votes
       has_many :bets
     end
-    
   end
   
   module ClassMethods
@@ -45,7 +42,4 @@ module IssuesPollUserPatch
       self.bets.sum(:votes, :conditions => ["issue_id=?", issue_id])
     end
   end
-  
 end
-
-User.send(:include, IssuesPollUserPatch) unless User.included_modules.include? IssuesPollUserPatch
