@@ -1,32 +1,18 @@
-#  Copyright 2011/2013 Dextra Sistemas
-#  
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#  
-#  http://www.apache.org/licenses/LICENSE-2.0
-#  
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
-
-# English strings go here for Rails i18n
+# German strings go here for Rails i18n
 de:
   issue_polls_caption: "Ticket-Abstimmung"
   issue_polls_dashboard: "Ticket-Abstimmung - Dashboard"
   label_user_login: "Login"
-  label_user_fullname: "Voller Name"
-  label_user_votes: "Verfügbare Stimmen"
+  label_user_fullname: "Vollständiger Name"
+  label_user_votes: "verfügbare Stimmen"
   label_members: "Mitglieder"
   label_field_votes: "Stimmen"
   label_bet_votes: "Stimme"
   label_config: "Einstellungen"
   label_votes_bet: "Stimmen"
-  label_issue_votes: "Ticket-Stimmen"
+  label_issue_votes: "Stimmen für das Ticket"
   label_user_name: "Name"
-  label_config_status: "Abstimmbarer Ticketstatus"
+  label_config_status: "Abstimmungsstatus"
   label_config_votes: "Stimme pro Mitglieder"
   label_update_votes: "Aktualisieren"
   bet_successful_created: "Abstimmung erfolgreich"
@@ -34,24 +20,24 @@ de:
   configuration_successful: "Konfiguration gespeichert"
   assignment_successful: "Zuweisung erfolgreich"
   field_bet_votes: "Stimmen"
-  button_assign: "Zuweisen"
-  button_set: "Setzen"
-  button_bet: "Abstimmen"
-  button_cancel: "Abbrechen"
+  button_assign: "zuweisen"
+  button_set: "speichern"
+  button_bet: "abstimmen"
+  button_cancel: "abbrechen"
   invalid_votes: "Anzahl der Stimmen muss eine ganze Zahl sein"
-  link_bet: "Abstimmen"
-  link_cancel_bet: "Abstimmunge abbrechen"
+  link_bet: "abstimmen"
+  link_cancel_bet: "Stimme entziehen"
   link_see_members: "Mitgliedern betrachten"
-  confirm_cancel_bet: "Abbrechung bestätigen?"
+  confirm_cancel_bet: "Wollen Sie ihr Stimme zurück ziehen?"
   confirm_set_votes: "Diese Aktion gibt allen Projektmitgliedern Stimmen. Fortfahren?"
   error_not_enough_votes: "Du hast keine Stimmen mehr verfügbar"
   error_invalid_votes: "Ungültige Abstimmung"
   permission_polls_config: "Konfiguration"
-  permission_bet: "Abstimmen"
+  permission_bet: "abstimmen"
   error_issue_not_eligible: "Das Ticket ist in keinem abstimmbaren Status"
   list_members_legend: "*Klicke auf die Stimmen um zu bearbeiten"
   permission_issues_poll_config: "Konfigurieren"
-  permission_issues_poll_bet: "Abstimmen"
+  permission_issues_poll_bet: "abstimmen"
   project_module_issues_poll: "Ticket-Abstimmung"
   vote_cancelled:
       one: "1 Abstimmung widerrufen"
